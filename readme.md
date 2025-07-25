@@ -14,7 +14,7 @@ This solution not only improved pipeline efficiency but also empowered the team 
 
 # adding file to aws ()
 # conneting to aws 
-
+```python
 spark.sparkContext._jsc.hadoopConfiguration().set("fs.s3a.access.key", "")
 spark.sparkContext._jsc.hadoopConfiguration().set("fs.s3a.secret.key", "")
 spark.read.csv("s3://databrickproject88/").show()
@@ -25,7 +25,10 @@ df.show()
 df.write.format("delta") \
     .mode("overwrite") \
     .save("s3a://databrickproject88/enigma-delta/")
+```
+```sql
 %sql
+
 CREATE TABLE if not exists enigma
 USING DELTA
 LOCATION 's3a://databrickproject88/enigma-delta/'
@@ -35,7 +38,8 @@ LOCATION 's3a://databrickproject88/enigma-delta/'
 -- # Points it to the Delta table files at s3a://databrickproject88/enigma-delta/.
 
 -- # This lets you easily query it using SQL (e.g., SELECT * FROM enigma) and use it in notebooks without specifying the path.
-
+```
+```python
 df = spark.table("enigma")
 df.show()
 
@@ -186,7 +190,7 @@ from delta.tables import DeltaTable
 delta_table = DeltaTable.forName(spark, "enigma")
 history_df = delta_table.history()
 history_df.show(truncate=False)
-
+```
 
 
  ##  Theory 
