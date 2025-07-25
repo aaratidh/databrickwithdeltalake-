@@ -1,4 +1,4 @@
-# adding file to aws ()
+
 # conneting to aws 
 ```python
 spark.sparkContext._jsc.hadoopConfiguration().set("fs.s3a.access.key", "#######")
